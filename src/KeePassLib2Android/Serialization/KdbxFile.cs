@@ -387,6 +387,9 @@ namespace KeePassLib.Serialization
 
       uint minRequiredVersion = Math.Max(minVersionForKeys, m_uFileVersion); //don't save a version lower than what we read
 
+      //always at least KDBX 4: attachments (photos) go into the inner header as raw bytes, not base64 in the XML
+      minRequiredVersion = Math.Max(minRequiredVersion, FileVersion32_4);
+
       return Math.Max(minRequiredVersion, GetMinKdbxVersionOrig());
     }
 
