@@ -3,7 +3,7 @@
     <RuntimeIdentifiers Condition="'$(RuntimeIdentifier)' == ''">android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
   </PropertyGroup>  
   <PropertyGroup>
-    <TargetFramework>net9.0-android</TargetFramework>
+    <TargetFramework>net10.0-android</TargetFramework>
     <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
     <RootNamespace>keepass2android</RootNamespace>
     <OutputType>Exe</OutputType>

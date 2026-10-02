@@ -276,11 +276,7 @@ $(OUTPUT_PluginQR): $(INPUT_PluginQR)
 
 nuget: stamp.nuget_$(Flavor)
 stamp.nuget_$(Flavor): src/KeePass.sln $(wildcard src/*/*.csproj) $(wildcard src/*/packages.config)
-ifeq ($(shell $(WHICH) nuget),)
-	$(error "nuget" command not found. Check it is in your PATH)
-endif
 	$(RMFILE) stamp.nuget_*
-	nuget restore src/KeePass.sln
 	$(DOTNET) restore src/KeePass.sln $(DOTNET_PARAM) -p:RestorePackagesConfig=true
 	@echo "" > stamp.nuget_$(Flavor)
 
@@ -302,7 +298,7 @@ apk_split: manifestlink native java nuget
 	$(DOTNET) publish src/keepass2android-app/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(DOTNET_PARAM) -p:Platform=AnyCPU -m -p:RuntimeIdentifier=android-arm64
 	$(DOTNET) publish src/keepass2android-app/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(DOTNET_PARAM) -p:Platform=AnyCPU -m -p:RuntimeIdentifier=android-x86
 	$(DOTNET) publish src/keepass2android-app/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(DOTNET_PARAM) -p:Platform=AnyCPU -m -p:RuntimeIdentifier=android-x64
-	src/build-scripts/rename-output-apks.sh src/keepass2android-app/bin/Release/net8.0-android/
+	src/build-scripts/rename-output-apks.sh src/keepass2android-app/bin/Release/net10.0-android/
 
 build_all: dotnetbuild
 
